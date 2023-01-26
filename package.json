@@ -10,10 +10,19 @@
   "author": "Dave Gray",
   "license": "ISC",
   "dependencies": {
-    "date-fns": "^2.23.0",
+    "date-fns": "^2.29.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitdagray/nodejs_web_server.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/gitdagray/nodejs_web_server/issues"
+  },
+  "homepage": "https://github.com/gitdagray/nodejs_web_server#readme"
 }

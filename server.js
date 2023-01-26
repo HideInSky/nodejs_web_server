@@ -4,14 +4,16 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 
 const logEvents = require('./logEvents');
+
+
 const EventEmitter = require('events');
 class Emitter extends EventEmitter { };
-// initialize object 
 const myEmitter = new Emitter();
 myEmitter.on('log', (msg, fileName) => logEvents(msg, fileName));
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3500; // +++
 
-const serveFile = async (filePath, contentType, response) => {
+const serveFile = async (filePath, contentType, response) => { // +++
+
     try {
         const rawData = await fsPromises.readFile(
             filePath,
@@ -19,7 +21,7 @@ const serveFile = async (filePath, contentType, response) => {
         );
         const data = contentType === 'application/json'
             ? JSON.parse(rawData) : rawData;
-        response.writeHead(
+        response.writeHead( // +++
             filePath.includes('404.html') ? 404 : 200,
             { 'Content-Type': contentType }
         );
@@ -34,13 +36,16 @@ const serveFile = async (filePath, contentType, response) => {
     }
 }
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) => { 
+
     console.log(req.url, req.method);
     myEmitter.emit('log', `${req.url}\t${req.method}`, 'reqLog.txt');
 
-    const extension = path.extname(req.url);
+    const extension = path.extname(req.url); // +++
 
-    let contentType;
+
+    let contentType;// +++
+
 
     switch (extension) {
         case '.css':
